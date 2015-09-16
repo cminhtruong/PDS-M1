@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.pds2015.org/P2M" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:miage="http://www.pds2015.org/P2M">
+	<xsd:import schemaLocation="sujet.xsd"></xsd:import>
+	<xsd:import schemaLocation="http://www.w3.org/2001/xml.xsd" namespace="http://www.w3.org/XML/1998/namespace"></xsd:import>
+
+	<xsd:complexType name="User">
+		<xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+		<xsd:attribute name="pseudo" type="xsd:string"></xsd:attribute>
+		<xsd:attribute name="password">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="8"></xsd:minLength>
+					<xsd:maxLength value="16"></xsd:maxLength>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="Error">
+		<xsd:sequence></xsd:sequence>
+		<xsd:attribute name="isOk" type="xsd:boolean"></xsd:attribute>
+		<xsd:attribute name="message" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="Test">
+		<xsd:sequence>
+			<xsd:any minOccurs="0"></xsd:any>
+		</xsd:sequence>
+		<xsd:attribute name="idTest" type="xsd:int"></xsd:attribute>
+		<xsd:attribute name="testName" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="LoginVerify">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="User" type="miage:User" minOccurs="0"
+					maxOccurs="1">
+				</xsd:element>
+				<xsd:element name="Error" type="miage:Error"
+					minOccurs="1" maxOccurs="1">
+				</xsd:element>
+				<xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="idSession" type="xsd:int"></xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="CreateTestVerify">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="user" type="miage:User" maxOccurs="1"
+					minOccurs="1">
+				</xsd:element>
+				<xsd:element name="test" type="miage:Test"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="error" type="miage:Error" maxOccurs="1" minOccurs="1"></xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="idSession" type="xsd:int"></xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+    <xsd:element name="ReadTestVerify">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+                <xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+    		<xsd:attribute name="idSession" type="xsd:int"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="LogoutVerify">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="error" type="miage:Error" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="UseTestVerify">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+                <xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+            </xsd:sequence>
+    		<xsd:attribute name="idSession" type="xsd:int"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="DeleteTestVerify">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1"
+    				minOccurs="1">
+    			</xsd:element>
+    			<xsd:element name="error" type="miage:Error"
+    				maxOccurs="1" minOccurs="1">
+    			</xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="idSession" type="xsd:int">
+    		</xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="CreateTestCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+    			<xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="dateCreateCheck" type="xsd:dateTime"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="LoginCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    		</xsd:sequence>
+    		<xsd:attribute name="pseudo" type="xsd:string"></xsd:attribute>
+    		<xsd:attribute name="password">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:string">
+    					<xsd:minLength value="8"></xsd:minLength>
+    					<xsd:maxLength value="16"></xsd:maxLength>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:attribute>
+    		<xsd:attribute name="ipLogin" type="xsd:string"></xsd:attribute>
+    		<xsd:attribute name="idSession" type="xsd:string"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="LogoutCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="dateLogout" type="xsd:dateTime"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DeleteTestCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+    			<xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="dateDeleteCheck" type="xsd:dateTime"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ReadTestCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+    			<xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="dateReadCheck" type="xsd:dateTime"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="UseTestCheck">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="user" type="miage:User" maxOccurs="1" minOccurs="1"></xsd:element>
+    			<xsd:element name="test" type="miage:Test" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    		<xsd:attribute name="dateUseCheck" type="xsd:dateTime"></xsd:attribute>
+    	</xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

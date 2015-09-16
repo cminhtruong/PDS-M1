@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miage:LoginVerify idSession="11"
+	xmlns:miage="http://www.pds2015.org/P2M" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.pds2015.org/P2M P2M.xsd ">
+	<miage:User id="1" password="Scorpius515" pseudo="Davide" />
+	<miage:Error isOk="true" message="Welcome to the application" />
+	<miage:test idTest="1" testName="HelloWorld" />
+</miage:LoginVerify>

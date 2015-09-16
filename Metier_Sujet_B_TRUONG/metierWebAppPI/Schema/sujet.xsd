@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML schema for Questionmark XTemplate files Version 5.1.1 29th June 
+	2009 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="http://www.w3.org/2001/xml.xsd" />
+	<xs:element name="author" type="xs:string" />
+	<xs:element name="br">
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="comment">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="author" type="xs:string"
+						use="required" />
+					<xs:attribute name="date" type="xs:string"
+						use="required" />
+					<xs:attribute ref="xml:lang" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="comments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="comment" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createdDate" type="xs:string" />
+	<xs:element name="description">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute ref="xml:lang" use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="entry">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="description" minOccurs="0" />
+				<xs:element ref="value" maxOccurs="unbounded" />
+				<xs:element ref="description" minOccurs="0" />
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required" />
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="boolean" />
+						<xs:enumeration value="image" />
+						<xs:enumeration value="integer" />
+						<xs:enumeration value="text" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="category" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="about" />
+						<xs:enumeration value="browserCheck" />
+						<xs:enumeration value="chooseLanguage" />
+						<xs:enumeration value="default" />
+						<xs:enumeration value="delivery" />
+						<xs:enumeration value="end" />
+						<xs:enumeration value="error" />
+						<xs:enumeration value="feedback" />
+						<xs:enumeration value="language" />
+						<xs:enumeration value="launchQS" />
+						<xs:enumeration value="list" />
+						<xs:enumeration value="login" />
+						<xs:enumeration value="qm2Go" />
+						<xs:enumeration value="question" />
+						<xs:enumeration value="status" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="styletype" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="fontsize" />
+						<xs:enumeration value="contrast" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="translate" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes" />
+						<xs:enumeration value="no" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="metadata">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="version" minOccurs="0" />
+				<xs:element ref="description" minOccurs="0" />
+				<xs:element ref="status" minOccurs="0" />
+				<xs:element ref="author" minOccurs="0" />
+				<xs:element ref="createdDate" minOccurs="0" />
+				<xs:element ref="comments" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="devices">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="require" minOccurs="1" />
+				<xs:element ref="alternate" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="language">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entry" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="description" />
+							<xs:element name="value" type="xs:string" />
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string"
+							use="required" />
+						<xs:attribute name="type" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="text" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="settings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="entry" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="categoryMap">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="category" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="description" />
+							<xs:element name="document" type="xs:string"
+								minOccurs="0" maxOccurs="unbounded" />
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string"
+							use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="outputMap">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="map" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="outputList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="output" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="stylesheet"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="stylesheetIE6"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="header" minOccurs="0"
+								maxOccurs="unbounded" />
+							<xs:element name="doctype" type="xs:string"
+								minOccurs="0" />
+							<xs:element name="action" minOccurs="0" />
+							<xs:element name="javascript"
+								type="xs:string" minOccurs="0" />
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string"
+							use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tools">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="entry" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="description" minOccurs="0" />
+							<xs:element ref="value"
+								maxOccurs="unbounded" />
+							<xs:element name="url" minOccurs="0" />
+							<xs:element name="window" minOccurs="0" />
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:string"
+							use="required" />
+						<xs:attribute name="type" type="xs:string"
+							use="required" />
+						<xs:attribute name="category" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKEN">
+									<xs:enumeration value="about" />
+									<xs:enumeration
+										value="browserCheck" />
+									<xs:enumeration
+										value="chooseLanguage" />
+									<xs:enumeration value="default" />
+									<xs:enumeration value="delivery" />
+									<xs:enumeration value="end" />
+									<xs:enumeration value="error" />
+									<xs:enumeration value="feedback" />
+									<xs:enumeration value="language" />
+									<xs:enumeration value="launchQS" />
+									<xs:enumeration value="list" />
+									<xs:enumeration value="login" />
+									<xs:enumeration value="qm2Go" />
+									<xs:enumeration value="question" />
+									<xs:enumeration value="status" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="status" type="xs:string" />
+	<xs:element name="text">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="entry" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="value">
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="br" />
+			</xs:choice>
+			<xs:attribute ref="xml:lang" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="version">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="major" type="xs:boolean"
+						use="required" />
+					<xs:attribute name="minor" type="xs:boolean"
+						use="required" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="require">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="class" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="alternate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="class" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="class">
+		<xs:complexType>
+			<xs:attribute name="id" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="html4" />
+						<xs:enumeration value="html3" />
+						<xs:enumeration value="ipod" />
+						<xs:enumeration value="unknown" />
+						<xs:enumeration value="qsb" />
+						<xs:enumeration value="pda" />
+						<xs:enumeration value="wml" />
+						<xs:enumeration value="blackberry" />
+						<xs:enumeration value="winmob6Opera" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="xTemplate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="metadata" minOccurs="0" />
+				<xs:element ref="devices" minOccurs="0" />
+				<xs:element ref="language" minOccurs="0" />
+				<xs:element ref="text" minOccurs="0" />
+				<xs:element ref="settings" minOccurs="0" />
+				<xs:element ref="tools" minOccurs="0" />
+				<xs:element ref="categoryMap" minOccurs="0" />
+				<xs:element ref="outputMap" minOccurs="0" />
+				<xs:element ref="outputList" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

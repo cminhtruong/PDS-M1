@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miage:ReadTestSend dateReadSend="2015-05-27T18:00:00"
+	xmlns:miage="http://www.pds2015.org/I2M" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.pds2015.org/I2M I2M.xsd ">
+	<miage:user id="1" password="pds2015esiag" pseudo="miage-esiag" />
+	<miage:test idTest="1" testName="HelloWorld" />
+</miage:ReadTestSend>
